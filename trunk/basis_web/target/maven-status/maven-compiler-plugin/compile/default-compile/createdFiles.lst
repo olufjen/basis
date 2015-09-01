@@ -1,0 +1,17 @@
+no\basis\web\server\listener\FagprosedyresessionListener.class
+no\basis\web\client\GetICD10ByDescription.class
+no\basis\web\client\GetICD10Response.class
+no\basis\web\client\ICD10Soap.class
+no\basis\web\client\GetICD10.class
+no\basis\web\client\package-info.class
+no\basis\web\client\ToxmlClient.class
+no\basis\web\server\resource\ToxmlServerresource.class
+no\basis\web\server\resource\RootResource.class
+no\basis\web\client\ICD10.class
+no\basis\web\client\ObjectFactory.class
+no\basis\web\server\resource\RootServerResource.class
+no\basis\web\client\GetICD10ByDescriptionResponse.class
+no\basis\web\server\resource\simple\BootstrapjsServerResource.class
+no\basis\web\server\listener\FagprosedyrecontextListener.class
+no\basis\web\server\resource\Tracer.class
+no\basis\web\server\resource\MyApplication.class

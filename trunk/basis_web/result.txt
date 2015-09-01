@@ -1,0 +1,49 @@
+[INFO] Error stacktraces are turned on.
+[INFO] Scanning for projects...
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building Basis web 1.0-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[WARNING] The POM for opensymphony:quartz:jar:1.6.0 is missing, no dependency information available
+[INFO] 
+[INFO] --- maven-clean-plugin:2.5:clean (default-clean) @ basis_web ---
+[INFO] Deleting C:\svnroot\basis\trunk\basis_web\target
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ basis_web ---
+[WARNING] Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] Copying 19 resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ basis_web ---
+[INFO] Changes detected - recompiling the module!
+[WARNING] File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+[INFO] Compiling 17 source files to C:\svnroot\basis\trunk\basis_web\target\classes
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ basis_web ---
+[WARNING] Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] skip non existing resourceDirectory C:\svnroot\basis\trunk\basis_web\src\test\resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.1:testCompile (default-testCompile) @ basis_web ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ basis_web ---
+[INFO] No tests to run.
+[INFO] 
+[INFO] --- maven-war-plugin:2.2:war (default-war) @ basis_web ---
+[INFO] Packaging webapp
+[INFO] Assembling webapp [basis_web] in [C:\svnroot\basis\trunk\basis_web\target\basis_web]
+[INFO] Processing war project
+[INFO] Copying webapp resources [C:\svnroot\basis\trunk\basis_web\src\main\webapp]
+[INFO] Webapp assembled in [5596 msecs]
+[INFO] Building war: C:\svnroot\basis\trunk\basis_web\target\basis_web.war
+[INFO] WEB-INF\web.xml already added, skipping
+[INFO] 
+[INFO] --- maven-install-plugin:2.4:install (default-install) @ basis_web ---
+[INFO] Installing C:\svnroot\basis\trunk\basis_web\target\basis_web.war to C:\Users\oluf\.m2\repository\no\basis\basis_web\1.0-SNAPSHOT\basis_web-1.0-SNAPSHOT.war
+[INFO] Installing C:\svnroot\basis\trunk\basis_web\pom.xml to C:\Users\oluf\.m2\repository\no\basis\basis_web\1.0-SNAPSHOT\basis_web-1.0-SNAPSHOT.pom
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 15.506 s
+[INFO] Finished at: 2015-08-15T10:53:35+02:00
+[INFO] Final Memory: 36M/282M
+[INFO] ------------------------------------------------------------------------
