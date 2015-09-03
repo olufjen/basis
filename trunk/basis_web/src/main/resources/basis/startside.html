@@ -1,7 +1,7 @@
 <html>
 <head>
 
-  <title>Rapporter hendelse - Hemovigilans</title>
+  <title>En start side for basis Restlet</title>
   <meta charset="utf-8">
   <meta http-equiv="Content-Type" content="text/html;">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -43,10 +43,8 @@
 <div class="container">
    <ul class="pager">
     <li class="previous" title="Du er ved startsiden. Her velger du ny melding eller oppfølgingsmelding "><a href="#"><strong><span style="color:black">Start</span></strong></a></li>
-    <li class="previous" title="Her velger du type melding "><a href="#">Type hendelse</a></li>
-    <li class="previous" title="Her fyller du inn detaljer om meldingen "><a href="#">Hendelsesdetaljer</a></li>
-    <li class="previous" title="Her fyller du inn kontaktinformasjon "><a href="#">Kontaktinformasjon</a></li>
-    <li class="previous" title="Her vises kvitteringen for meldingen "><a href="#">Kvittering</a></li>
+    <li class="previous" title="Her velger du noe annet "><a href="#">Noe annet</a></li>
+ 
   </ul> 
   
 <form action="?method=PUT" method="post">
@@ -84,7 +82,7 @@ function meldingsnokkel(){
 }
 </script>
 
-<h2>Hemovigilans Rapporter en hendelse </h2>
+<h2>En basis startside </h2>
   
  <div id="levert" class="form-group">
         <label></label>
@@ -94,30 +92,27 @@ function meldingsnokkel(){
       <div class="radio">
           <label>
             <input name="k-nymelding" type="radio" id="k-nymelding" value="ny-melding" onclick="toggleDisplay('passord-div',0);document.location='rapporter_hendelse_main.html';" />
-             Ny melding
+             Et valg
           </label>
       </div>
       <div class="radio">
           <label>
             <input name="k-nymelding" type="radio" id="k-oppfolging" value="oppfølgningsmelding" onclick="toggleDisplay('passord-div',this.checked);toggleDisplay('nyttpassord',1)"/>
-             Oppfølgningsmelding
+            Et valg med pålogging
           </label>
         <div class="form-group" id="passord-div" style="display:none">
-        <label for="k-epost">Melders E-post:</label>
+        <label for="k-epost">E-post:</label>
         <div>
           <input name="k-melderepost" type="text" class="form-control" id="k-meldingsnokkel" placeholder="Melders epost" >
         </div><br />
-        <label for="k-passord">Melders passord:</label>
+        <label for="k-passord">Passord:</label>
         <div>
           <input name="k-melderpassord" type="password" class="form-control" id="k-meldingsnokkel" placeholder="Melders passord" onblur="meldingsnokkel();">
         </div><br />       
       </div>
       </div>
  
-     <div class="form-group" id="ingennokkel" >
-     	<label>${melding}</label>
-     </div>
- 
+  
 
 <div class="panel-group" id="accordion">
 

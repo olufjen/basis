@@ -12,9 +12,9 @@
 <!-- Restlet components -->
 
         <bean id="component" class="org.restlet.ext.spring.SpringComponent">
-                <property name="name" value="RESTful Biovigilans Server component" />
-                <property name="description" value="Example for Biovigilans" />
-                <property name="owner" value="Kunnskapssenteret" />
+                <property name="name" value="RESTful Basis Server component" />
+                <property name="description" value="Example for Restlet aplications" />
+                <property name="owner" value="Oluf Jensen" />
                 <property name="author" value="Oluf Jensen" />
             <property name="defaultTarget" ref="path2BeanRouter" />
             <property name="client" value="clap" />
@@ -104,5 +104,16 @@
             </props>
         </property>
     </bean>
-
+    <bean name="path2BeanRouter" class="org.restlet.ext.spring.SpringBeanRouter">
+<!-- 
+            <property name="attachments"> 
+            <map> 
+               <entry key="/css/" value-ref="docsDir" /> 
+            </map> 
+        </property> 
+  -->       
+	</bean>
+  <bean name="/basis/startside.html" id="rapporterstartServerResource" autowire="byName" scope="prototype"
+            class="no.naks.biovigilans.web.server.resource.RapporterStartServerResourceHTML">
+  </bean>
 </beans>
