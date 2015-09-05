@@ -1,13 +1,14 @@
 package no.basis.felles.server.resource;
 
 
+import org.restlet.resource.ServerResource;
+
 import no.basis.felles.control.SessionAdmin;
 
 
-import org.restlet.resource.ServerResource;
-
 /**
  * Master klasse for Server resource
+ * 
  * @author oluf
  *
  */
