@@ -6,6 +6,11 @@ import no.basis.felles.control.SessionAdmin;
 
 import org.restlet.resource.ServerResource;
 
+/**
+ * Master klasse for Server resource
+ * @author oluf
+ *
+ */
 public class ProsedyreServerResource extends ServerResource {
 
 	protected SessionAdmin sessionAdmin = null;
