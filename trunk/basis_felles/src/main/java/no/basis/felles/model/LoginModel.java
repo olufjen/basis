@@ -5,7 +5,7 @@ import java.util.Map;
 import no.naks.biovigilans.model.Saksbehandler;
 import no.naks.biovigilans.model.SaksbehandlerImpl;
 
-public class LoginModel extends VigilansModel {
+public class LoginModel extends ParentModel {
 
 	private String epostAdresse;
 	private String passord;

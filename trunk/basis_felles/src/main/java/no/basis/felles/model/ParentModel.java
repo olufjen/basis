@@ -17,19 +17,15 @@ import org.restlet.data.Parameter;
  * Denne klassen er superklassen til alle modelklasser som representerer et skjermbilde (et brukergrensesnitt)
  *
  */
-public class VigilansModel {
+public class ParentModel {
 
 	protected boolean lagret = false; // Satt true dersom session objects er lagret
 	private Map<String,String> formMap; // Inneholder brukers input verdier fra skjermbildet
 	private String[] formNames; // Inneholder navn på input felt i skjermbildet
 	private String accountRef;
-	private Vigilansmelding vigilans;
-	private Date meldingLevert;
-	private String meldingsNokkel = "";
-	private String meldLevert;
-	protected Date hendelseDato = null; // Dato settes dersom dette er en oppfølgingsmelding
+
 	
-	public VigilansModel() {
+	public ParentModel() {
 		super();
 		formMap = new HashMap<String,String>();
 		// TODO Auto-generated constructor stub
@@ -50,53 +46,6 @@ public class VigilansModel {
 
 
 
-	public Date getMeldingLevert() {
-		return meldingLevert;
-	}
-
-
-	public void setMeldingLevert(Date meldingLevert) throws ParseException {
-		this.meldingLevert = meldingLevert;
-		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-		if (meldingLevert != null){
-			try {
-				meldLevert = dateFormat.format(meldingLevert);
-				Date datoLevert =   dateFormat.parse(meldLevert);
-			} catch (ParseException e) {
-				System.out.println("date format problem: " + e.toString());
-			}			
-		}
-
-	}
-
-
-	public Date getHendelseDato() {
-		return hendelseDato;
-	}
-
-
-	public void setHendelseDato(Date hendelseDato) {
-		this.hendelseDato = hendelseDato;
-	}
-
-	public String getMeldingsNokkel() {
-		return meldingsNokkel;
-	}
-
-
-	public void setMeldingsNokkel(String meldingsNokkel) {
-		this.meldingsNokkel = meldingsNokkel;
-	}
-
-
-	public String getMeldLevert() {
-		return meldLevert;
-	}
-
-
-	public void setMeldLevert(String meldLevert) {
-		this.meldLevert = meldLevert;
-	}
 
 
 	/**
@@ -149,20 +98,6 @@ public class VigilansModel {
 	}
 
 
-	public Vigilansmelding getVigilans() {
-		return vigilans;
-	}
 
-
-	public void setVigilans(Vigilansmelding vigilans) {
-		this.vigilans = vigilans;
-	}
-	
-	/*public void distributeTerms(){
-		String[] formFields = getFormNames();
-		String donasjonFields[] = {formFields[6],formFields[7],formFields[8],formFields[9],formFields[10],formFields[11],formFields[12],formFields[25]};
-		//vigilans.set .setDonasjonsfieldMaps(donasjonFields);
-	}
-	*/
 	
 }
