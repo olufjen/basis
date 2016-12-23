@@ -7,7 +7,7 @@ import org.restlet.Request;
 import org.restlet.ext.servlet.ServletUtils;
 
 /**
- * Denne klassen administerer session objekter for Restlet Resurser
+ * Denne klassen administerer session objekter for Restlet Resurser 
  * @author olj
  *
  */
