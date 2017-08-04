@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.Function;
 
 import no.naks.biovigilans.model.Vigilansmelding;
 
@@ -41,8 +42,24 @@ public class ParentModel {
 	public void setLagret(boolean lagret) {
 		this.lagret = lagret;
 	}
+	public  String extract(String s,Function <String,String> f){
+		return f.apply(s);
+	}
+	/**
+	 * extractString
+	 * This routine extracts a substring form a string  using the Function interface
+	 * It finds the last index of a string using separator
+	 * @param line The original string
+	 * @param separator The separator
+	 * @param startindex The startindex
+	 * @return the substring
+	 */
+	public String extractString(String line,char separator,int startindex){
+		int index = line.lastIndexOf(separator);
+		Function<String,String> f = (String s) -> line.substring(startindex,index);
+		return extract(line,f);
 
-
+	}
 
 
 
