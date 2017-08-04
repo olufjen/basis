@@ -42,6 +42,7 @@ public class SessionServerResource extends ProsedyreServerResource {
 
 
     protected EmailWebService emailWebService;
+    protected String displayKey = "display";
 
 /*
  * Login objekter
@@ -75,6 +76,14 @@ public class SessionServerResource extends ProsedyreServerResource {
 		this.loginKey = loginKey;
 	}
 
+
+	public String getDisplayKey() {
+		return displayKey;
+	}
+
+	public void setDisplayKey(String displayKey) {
+		this.displayKey = displayKey;
+	}
 
 	/**
 	 * invalidateSessionobjects
