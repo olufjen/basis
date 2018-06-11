@@ -6,19 +6,21 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 
-import no.naks.biovigilans.model.Vigilansmelding;
+//import no.naks.biovigilans.model.Vigilansmelding;
 
 import org.restlet.data.Parameter;
 
 /**
  * @author olj
  * Denne klassen er superklassen til alle modelklasser som representerer et skjermbilde (et brukergrensesnitt)
+ * @param <T>
  *
  */
-public class ParentModel {
+public class ParentModel<T> {
 
 	protected boolean lagret = false; // Satt true dersom session objects er lagret
 	private Map<String,String> formMap; // Inneholder brukers input verdier fra skjermbildet
@@ -45,6 +47,7 @@ public class ParentModel {
 	public  String extract(String s,Function <String,String> f){
 		return f.apply(s);
 	}
+
 	/**
 	 * extractString
 	 * This routine extracts a substring form a string  using the Function interface
@@ -56,8 +59,14 @@ public class ParentModel {
 	 */
 	public String extractString(String line,char separator,int startindex){
 		int index = line.lastIndexOf(separator);
+		if (index == -1)
+			return null;
 		Function<String,String> f = (String s) -> line.substring(startindex,index);
-		return extract(line,f);
+		Function<String,String> ef = (String s) -> line.substring(index+1);
+		if (startindex == -1)
+			return extract(line,ef);
+		else
+			return extract(line,f);
 
 	}
 
