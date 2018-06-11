@@ -8,7 +8,7 @@ import java.util.Map;
 import org.restlet.Request;
 import org.restlet.data.Reference;
 
-import no.naks.biovigilans.model.Annenkomplikasjon;
+/*import no.naks.biovigilans.model.Annenkomplikasjon;
 import no.naks.biovigilans.model.Blodprodukt;
 import no.naks.biovigilans.model.Forebyggendetiltak;
 import no.naks.biovigilans.model.Giverkomplikasjon;
@@ -21,7 +21,7 @@ import no.naks.biovigilans.model.Symptomer;
 import no.naks.biovigilans.model.Tiltak;
 import no.naks.biovigilans.model.Transfusjon;
 import no.naks.biovigilans.model.Utredning;
-import no.naks.biovigilans.model.Vigilansmelding;
+import no.naks.biovigilans.model.Vigilansmelding;*/
 import no.basis.felles.control.EmailWebService;
 import no.basis.felles.model.LoginModel;
 
