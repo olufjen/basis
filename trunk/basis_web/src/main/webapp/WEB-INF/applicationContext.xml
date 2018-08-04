@@ -13,7 +13,7 @@
 
         <bean id="component" class="org.restlet.ext.spring.SpringComponent">
                 <property name="name" value="RESTful Basis Server component" />
-                <property name="description" value="Example for Restlet aplications" />
+                <property name="description" value="Example for Restlet applications" />
                 <property name="owner" value="Oluf Jensen" />
                 <property name="author" value="Oluf Jensen" />
             <property name="defaultTarget" ref="path2BeanRouter" />
@@ -67,13 +67,7 @@
          <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
                 <property name="locations">
                         <list>
-                                <!-- <value>/WEB-INF/application.properties</value>
-                                <value>/WEB-INF/jdbc.properties</value>
-                                <value>/WEB-INF/jdbcutside.properties</value>
-                                <value>/WEB-INF/sqladmin.properties</value>
-                                <value>/WEB-INF/tables.properties</value>
-                                <value>/WEB-INF/question.properties</value>
-                                <value>/WEB-INF/environment.properties</value> -->
+   
                                 <value>/config/app-config/application.properties</value>
                                 <value>/config/app-config/jdbc.properties</value>
                                 <value>/config/app-config/jdbcutside.properties</value>
@@ -93,7 +87,7 @@
 
 	
 <!-- Exception handling -->
-    <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+    <!-- <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
         <property name="defaultErrorView" value="error/exception" />
         <property name="defaultStatusCode" value="500" />
         <property name="warnLogCategory" value="WARN" />
@@ -103,7 +97,7 @@
                 
             </props>
         </property>
-    </bean>
+    </bean> -->
     <bean name="path2BeanRouter" class="org.restlet.ext.spring.SpringBeanRouter">
 <!-- 
             <property name="attachments"> 
@@ -114,6 +108,9 @@
   -->       
 	</bean>
   <bean name="/basis/startside.html" id="rapporterstartServerResource" autowire="byName" scope="prototype"
-            class="no.naks.biovigilans.web.server.resource.RapporterStartServerResourceHTML">
+            class="no.basis.web.server.resource.RapporterStartServerResourceHTML">
+  </bean>
+    <bean name="/basis/" id="startServerResource" autowire="byName" scope="prototype"
+            class="no.basis.web.server.resource.RapporterStartServerResourceHTML">
   </bean>
 </beans>

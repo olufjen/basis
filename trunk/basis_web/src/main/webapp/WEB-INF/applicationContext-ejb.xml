@@ -10,8 +10,13 @@
 		<property name="username" value="${database.username}"></property>
 		<property name="password" value="${database.password}"></property>
 	</bean>
-
-	<bean id="jdbcTemplatebiovigilans" class="org.springframework.jdbc.core.JdbcTemplate">
+	<bean id="dataSourceskjemabank" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="${database.driver}"></property>
+		<property name="url" value="${database.url.innsiden}"></property>
+		<property name="username" value="${database.username}"></property>
+		<property name="password" value="${database.password}"></property>
+	</bean>
+	<bean id="jdbcTemplatebasis" class="org.springframework.jdbc.core.JdbcTemplate">
 		<property name="dataSource" ref="dataSourceskjemabank"></property>
 	</bean>
 	<bean id="domainDictionary" class="no.naks.framework.web.control.DomainDictionaryImpl">
