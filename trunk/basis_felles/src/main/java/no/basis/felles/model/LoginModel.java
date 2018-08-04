@@ -2,8 +2,7 @@ package no.basis.felles.model;
 
 import java.util.Map;
 
-import no.naks.biovigilans.model.Saksbehandler;
-import no.naks.biovigilans.model.SaksbehandlerImpl;
+
 
 public class LoginModel extends ParentModel {
 
