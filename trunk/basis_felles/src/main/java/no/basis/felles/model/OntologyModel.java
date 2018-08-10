@@ -1,7 +1,9 @@
 package no.basis.felles.model;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -26,13 +28,27 @@ import no.chess.ontology.Taken;
 import no.chess.ontology.Vacant;
 import no.chess.ontology.WhiteBoardPosition;
 import no.chess.ontology.WhitePiece;
+import uk.ac.manchester.cs.owlapi.dlsyntax.DLSyntaxObjectRenderer;
 
 //import org.mindswap.pellet.jena.PelletReasonerFactory;
 import org.protege.owl.codegeneration.inference.CodeGenerationInference;
 import org.semanticweb.owlapi.apibinding.OWLManager;
+import org.semanticweb.owlapi.io.OWLObjectRenderer;
+import org.semanticweb.owlapi.model.OWLAxiom;
+import org.semanticweb.owlapi.model.OWLDataFactory;
 import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 import org.semanticweb.owlapi.model.OWLOntologyManager;
+import org.semanticweb.owlapi.model.OWLOntologyStorageException;
+import org.semanticweb.owlapi.reasoner.OWLReasoner;
+import org.semanticweb.owlapi.reasoner.OWLReasonerFactory;
+import org.semanticweb.owlapi.reasoner.SimpleConfiguration;
+import org.semanticweb.owlapi.util.InferredAxiomGenerator;
+import org.semanticweb.owlapi.util.InferredOntologyGenerator;
+import org.semanticweb.owlapi.util.InferredPropertyAssertionGenerator;
+import org.semanticweb.owlapi.vocab.PrefixOWLOntologyFormat;
+//import org.swrlapi.factory.SWRLAPIFactory;
+//import org.swrlapi.sqwrl.SQWRLQueryEngine;
 
 import com.hp.hpl.jena.ontology.ConversionException;
 /*import org.swrlapi.core.*;
@@ -74,10 +90,15 @@ import com.hp.hpl.jena.reasoner.rulesys.Rule;
 import com.hp.hpl.jena.sparql.core.Var;
 import com.clarkparsia.pellet.owlapiv3.PelletReasoner;
 import com.clarkparsia.pellet.owlapiv3.PelletReasonerFactory;
+//import org.swrlapi.sqwrl.exceptions.
 /* @author olj
  * This class reads and manipulates chosen ontology models
  * 
  * 
+ */
+/**
+ * @author bruker
+ *
  */
 public class OntologyModel {
 	/**
@@ -90,6 +111,15 @@ public class OntologyModel {
 	private OntologyHelper ontlogyHelper;
 	private Resource chessGame;
 	private OWLOntologyManager owlmanager = null;
+/*
+ * OWL reasoners and factories	
+ */
+	private OWLReasonerFactory owlReasonerFactory = null;
+	private OWLReasoner owlReasoner = null;
+	private OWLDataFactory owlDatafactory = null;
+	private OWLObjectRenderer owlRenderer = null;
+	private PrefixOWLOntologyFormat pm = null;
+	private static String BASE_URL = "http://oljontologies.org/games/chess";
 	/**
 	 * Contains owl ontology model. (org.semanticweb.owlapi.model.OWLOntology) It is used to create java classes of owl individuals.
 	 * They represents the individuals in the chess game
@@ -114,6 +144,8 @@ public class OntologyModel {
 	 */
 	private GenericRuleReasoner genRulereasoner;
 	private PelletReasoner clarkpelletReasoner;
+	private InferredOntologyGenerator iog = null;
+//	private SQWRLQueryEngine queryEngine = null;
 	/**
 	 * Contains ontology model with .hp.hpl.jena Reasoner General Rule reasoner with separate rules file
 	 * .hp.hpl.jena.rdf.model.InfModel
@@ -127,12 +159,90 @@ public class OntologyModel {
 		this.model = fetchOntology();
 		chessFactory = new ChessFactory(ontModel);
 		owlInference = chessFactory.getInference();
-//		clarkpelletReasoner = PelletReasonerFactory.getInstance().createReasoner(ontModel);
-//		clarkpelletReasoner.getKB().realize();
-//		clarkpelletReasoner.
-
+		owlReasonerFactory = PelletReasonerFactory.getInstance();
+		owlReasoner = owlReasonerFactory.createReasoner(ontModel, new SimpleConfiguration());
+		owlDatafactory = owlmanager.getOWLDataFactory();
+		owlRenderer = new DLSyntaxObjectRenderer();
+		pm = (PrefixOWLOntologyFormat) owlmanager.getOntologyFormat(ontModel);
+		pm.setDefaultPrefix(BASE_URL+"#");
+		System.out.println("Preparing clarckpelletReasoner on ontModel ");
+		clarkpelletReasoner = PelletReasonerFactory.getInstance().createReasoner(ontModel);
+		clarkpelletReasoner.getKB().realize();
+		System.out.println("ClarckpelletReasoner on ontModel prepared "+clarkpelletReasoner.getReasonerName() );
+		
+		List<InferredAxiomGenerator<? extends OWLAxiom>> axiomGenerators = new ArrayList<InferredAxiomGenerator<? extends OWLAxiom>>();
+	    axiomGenerators.add( new InferredPropertyAssertionGenerator() );
+	    iog = new InferredOntologyGenerator(clarkpelletReasoner,axiomGenerators);
+	    iog.fillOntology(owlmanager, ontModel);
+//	    queryEngine = SWRLAPIFactory.createSQWRLQueryEngine(ontModel);
+	    OutputStream owlOutputStream = new ByteArrayOutputStream();
+	    try {
+			owlmanager.saveOntology(ontModel, owlOutputStream);
+		} catch (OWLOntologyStorageException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+/*	    String inferredData = owlOutputStream.toString();	
+	    System.out.println(" Filled ontlogy "+inferredData);
+*/
 		String format = "RDF/XML";
 
+	}
+
+	public InferredOntologyGenerator getIog() {
+		return iog;
+	}
+
+	public void setIog(InferredOntologyGenerator iog) {
+		this.iog = iog;
+	}
+
+	public OWLDataFactory getOwlDatafactory() {
+		return owlDatafactory;
+	}
+
+	public void setOwlDatafactory(OWLDataFactory owlDatafactory) {
+		this.owlDatafactory = owlDatafactory;
+	}
+
+	public OWLReasoner getOwlReasoner() {
+		return owlReasoner;
+	}
+
+	public void setOwlReasoner(OWLReasoner owlReasoner) {
+		this.owlReasoner = owlReasoner;
+	}
+
+	public OWLObjectRenderer getOwlRenderer() {
+		return owlRenderer;
+	}
+
+	public void setOwlRenderer(OWLObjectRenderer owlRenderer) {
+		this.owlRenderer = owlRenderer;
+	}
+
+	public PrefixOWLOntologyFormat getPm() {
+		return pm;
+	}
+
+	public void setPm(PrefixOWLOntologyFormat pm) {
+		this.pm = pm;
+	}
+
+	public static String getBASE_URL() {
+		return BASE_URL;
+	}
+
+	public static void setBASE_URL(String bASE_URL) {
+		BASE_URL = bASE_URL;
+	}
+
+	public PelletReasoner getClarkpelletReasoner() {
+		return clarkpelletReasoner;
+	}
+
+	public void setClarkpelletReasoner(PelletReasoner clarkpelletReasoner) {
+		this.clarkpelletReasoner = clarkpelletReasoner;
 	}
 
 	public ResultSet getResults() {

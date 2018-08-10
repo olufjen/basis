@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-<!--  
+<!--
   <parent>
     <groupId>no.kunnskapssenteret</groupId>
     <artifactId>webtjenester</artifactId>
@@ -28,20 +28,20 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.3</version>
-                <configuration>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
-                </configuration>
+                <version>3.11.0</version> <!-- Use a recent version -->
+             <configuration>
+                    <source>21</source>
+                    <target>21</target>
+            </configuration>
             </plugin>
-            <plugin>
+   <!--     <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
                 <configuration>
                     <source>${java.version}</source>
                     <target>${java.version}</target>
                   </configuration>
-      </plugin>
- </plugins> 
+             </plugin> -->
+      </plugins>
     </build>
     
         <!-- Properties files  jena version prev: 3.0.0 olj 09.08.18 3.8.0 creates problems!!  -->
@@ -57,7 +57,8 @@
         <org.springframework.version>3.1.1.RELEASE</org.springframework.version>
         <springwebflow.version>2.3.2.RELEASE</springwebflow.version>
          <springweboxm.version>3.1.1.RELEASE</springweboxm.version>
-        <restlet.version>2.2-M5</restlet.version>
+    <!--    <restlet.version>2.2-M5</restlet.version>  -->
+        <restlet.version>3.0-M1</restlet.version>
  <!--         <basedirx>C:\Users\oluf\.m2\repository</basedirx>  -->
     </properties>
 
@@ -101,11 +102,12 @@
         </snapshots>  
      </repository>
      
-     <!-- Repository for Restlet -->
+     <!-- Repository for Restlet endret 22.09.25 -->
      <repository>
      	<id>maven-restlet</id>
      	<name>Public online Restlet repository</name>
-     	<url>http://maven.restlet.org/</url>
+    <!-- 	<url>http://maven.restlet.org/</url> -->
+    <url>https://maven.restlet.talend.com/</url>
      	<snapshots>
         <enabled>true</enabled>
         <updatePolicy>never</updatePolicy>
@@ -347,18 +349,20 @@
 	          <artifactId>rammeverk_kilde</artifactId>
 	          <version>1.0-SNAPSHOT</version>
    		</dependency>
-  	      <dependency>
+ <!-- no.kunnskapssenteret fjernet 17.09.25	      <dependency>
 	         <groupId>no.kunnskapssenteret</groupId>
 	          <artifactId>hive-core</artifactId>
 	          <version>1.0-SNAPSHOT</version>
-	      </dependency> 
+	      </dependency> -->
 <!--	      <dependency>
 	         <groupId>no.kunnskapssenteret</groupId>
 	          <artifactId>semantiskweb_web</artifactId>
 	          <version>1.0-SNAPSHOT</version>
 	      </dependency>   	-->
-	 <!-- Elmo libs lagret lokalt !!!  -->     
-		  <dependency>
+	 <!-- Elmo libs lagret lokalt !!!  -->    
+         
+<!-- no.kunnskapssenteret fjernet 17.09.25
+	  <dependency>
 	         <groupId>no.kunnskapssenteret</groupId>
 	          <artifactId>elmo-1.5</artifactId>
 	          <version>1.0-SNAPSHOT</version>
@@ -387,7 +391,7 @@
 	         <groupId>no.kunnskapssenteret</groupId>
 	          <artifactId>openrdf-sesame-2.4.0-onejar</artifactId>
 	          <version>1.0-SNAPSHOT</version>
-	      </dependency> 	      	           	      	      		
+	      </dependency> end kmno-. kunnskapssenteret fjernet	  -->    	           	      	      		
    		<!-- Spring web flow   removed 08.06.18
    
    			<dependency>
@@ -642,11 +646,17 @@
 	<version>3.4.3</version>
 </dependency>
 <!-- Restlet depenencies -->
+<!-- https://mvnrepository.com/artifact/org.restlet.jee/org.restlet -->
 <dependency>
+    <groupId>org.restlet.jee</groupId>
+    <artifactId>org.restlet</artifactId>
+    <version>3.0-M1</version>
+</dependency>
+<!--<dependency>
         <groupId>org.restlet.jee</groupId>
         <artifactId>org.restlet</artifactId>
         <version>${restlet.version}</version>
-</dependency>
+</dependency>  -->
 <dependency>
         <groupId>org.restlet.jee</groupId>
         <artifactId>org.restlet.ext.spring</artifactId>
@@ -673,12 +683,12 @@
 <dependency>
         <groupId>org.restlet.jee</groupId>
         <artifactId>org.restlet.ext.net</artifactId>
-        <version>${restlet.version}</version>
+        <version>2.2-M6</version>
 </dependency>
 <dependency>
         <groupId>org.restlet.jee</groupId>
         <artifactId>org.restlet.ext.jdbc</artifactId>
-        <version>${restlet.version}</version>
+        <version>2.3.12</version>
 </dependency>
 <!-- Feiler:
 <dependency>
@@ -735,12 +745,12 @@
 <dependency>
         <groupId>org.restlet.jee</groupId>
         <artifactId>org.restlet.ext.jibx</artifactId>
-        <version>${restlet.version}</version>
+        <version>2.4.4</version>
 </dependency>
 <dependency>
         <groupId>org.restlet.jee</groupId>
         <artifactId>org.restlet.ext.xstream</artifactId>
-        <version>${restlet.version}</version>
+        <version>2.3.12</version>
 </dependency>
 <dependency>
         <groupId>org.restlet.jee</groupId>
@@ -760,13 +770,13 @@
 <dependency>
         <groupId>org.restlet.jee</groupId>
         <artifactId>org.restlet.ext.rome</artifactId>
-        <version>${restlet.version}</version>
+        <version>2.3.12</version>
 </dependency>
  
 <dependency>
         <groupId>org.restlet.jee</groupId>
         <artifactId>org.restlet.ext.ssl</artifactId>
-        <version>${restlet.version}</version>
+        <version>2.2-M6</version>
 </dependency>
  <!-- -->
   
