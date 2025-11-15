@@ -1,7 +1,7 @@
 package no.basis.felles.control;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 import org.restlet.Request;
 import org.restlet.ext.servlet.ServletUtils;
@@ -21,7 +21,7 @@ public class SessionAdminImpl implements SessionAdmin {
 
 	@Override
 	public Object getSessionObject(Request request,String idKey) {
-	     HttpServletRequest req = ServletUtils.getRequest(request);
+	     HttpServletRequest req = (HttpServletRequest) ServletUtils.getRequest(request);
 	     HttpSession session = req.getSession();
 	     Object result = session.getAttribute(idKey);
 		return result;
@@ -29,7 +29,7 @@ public class SessionAdminImpl implements SessionAdmin {
 
 	@Override
 	public void setSessionObject(Request request, Object o, String idKey) {
-		  HttpServletRequest req = ServletUtils.getRequest(request);
+		  HttpServletRequest req = (HttpServletRequest) ServletUtils.getRequest(request);
 		  HttpSession session = req.getSession();
 		  session.setAttribute(idKey, o);
 
@@ -37,7 +37,7 @@ public class SessionAdminImpl implements SessionAdmin {
 
 	@Override
 	public HttpSession getSession(Request request, String idKey) {
-		HttpServletRequest req = ServletUtils.getRequest(request);
+		HttpServletRequest req = (HttpServletRequest) ServletUtils.getRequest(request);
 		HttpSession session = req.getSession();
 		return session;
 	}
