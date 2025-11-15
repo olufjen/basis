@@ -46,6 +46,7 @@ import org.semanticweb.owlapi.reasoner.SimpleConfiguration;
 import org.semanticweb.owlapi.util.InferredAxiomGenerator;
 import org.semanticweb.owlapi.util.InferredOntologyGenerator;
 import org.semanticweb.owlapi.util.InferredPropertyAssertionGenerator;
+//import org.semanticweb.owlapi.vocab.
 import org.semanticweb.owlapi.vocab.PrefixOWLOntologyFormat;
 //import org.swrlapi.factory.SWRLAPIFactory;
 //import org.swrlapi.sqwrl.SQWRLQueryEngine;
@@ -173,7 +174,7 @@ public class OntologyModel {
 		List<InferredAxiomGenerator<? extends OWLAxiom>> axiomGenerators = new ArrayList<InferredAxiomGenerator<? extends OWLAxiom>>();
 	    axiomGenerators.add( new InferredPropertyAssertionGenerator() );
 	    iog = new InferredOntologyGenerator(clarkpelletReasoner,axiomGenerators);
-	    iog.fillOntology(owlmanager, ontModel);
+	    iog.fillOntology((OWLDataFactory) owlmanager, ontModel);
 //	    queryEngine = SWRLAPIFactory.createSQWRLQueryEngine(ontModel);
 	    OutputStream owlOutputStream = new ByteArrayOutputStream();
 	    try {
